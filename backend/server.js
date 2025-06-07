@@ -25,7 +25,6 @@ connectMongoDB()
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
 
 const app = express();
 
@@ -34,17 +33,13 @@ const server = http.createServer(app);  // Tạo server HTTP
 const io = new Server(server, {
   path: '/qldv/socket.io',
   cors: {
-    origin: CLIENT_URL,
     methods: ['GET', 'POST'],
   }
 });
 
 
 // Xử lý các middlewares
-app.use(cors({
-  origin: CLIENT_URL,
-  credentials: true,
-}));
+app.use(cors({}));
 app.use(morgan('dev'));
 app.use(express.json());
 
