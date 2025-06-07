@@ -16,10 +16,7 @@ const {
 // ✅ Kết nối MongoDB
 export const connectMongoDB = async () => {
   try {
-    await mongoose.connect(DB_CONNECTION_STRING, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(DB_CONNECTION_STRING);
     console.log("💻 MongoDB Connected");
   } catch (err) {
     console.error("❌ MongoDB connection error:", err);
