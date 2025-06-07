@@ -47,7 +47,6 @@ const AccountSchema = new Schema({
   },
   position: {
     type: String,
-    type: String,
     enum: ['secretary', 'deputy_secretary', 'executive_member', 'member'],
     default: null,
   },
@@ -84,4 +83,20 @@ const AccountSchema = new Schema({
 AccountSchema.plugin(mongoosePaginate);
 
 const Account = model('Account', AccountSchema);
+
+// async function seedAdminAccount() {
+//   const existing = await Account.findOne({ email: 'admin@gmail.com' });
+//   if (!existing) {
+//     const seedAdmin = new Account({ email: 'admin@gmail.com', status: 'actived',role: 'admin', password: await hashPassword('admin@'), });
+//     await seedAdmin.save();
+//     console.log('✅ Seeded admin account.');
+//   } else {
+//     console.log('ℹ️ Admin account already exists.');
+//   }
+// }
+
+// seedAdminAccount();
+
 export default Account;
+
+
