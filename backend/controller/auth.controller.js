@@ -57,8 +57,6 @@ const AuthController = () => {
       const account = new Account({ ...form, password: password, avatar: avatar || null, status: 'pending' })
       await account.save()
 
-
-
       return sendResponse(res, 201, 'Tạo tài khoản thành công')
 
     } catch (error) {

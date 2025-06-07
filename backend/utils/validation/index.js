@@ -25,7 +25,7 @@ export const validateAccountForm = (form, updating = false) => {
   const memberFields = ['chapterId', 'cardCode', 'joinedAt', 'position', 'hometown', 'ethnicity', 'religion', 'eduLevel'];
 
   try {
-    const role = form.role;
+    const role = form?.role;
 
     // Kiểm tra các trường bắt buộc nếu không phải cập nhật
     if (!updating) {

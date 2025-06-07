@@ -8,7 +8,7 @@ const AuthRoute = express.Router()
 AuthRoute.get('/', AuthController.getProfile)
 AuthRoute.put('/', uploadAvatar, AuthController.updateProfile)
 AuthRoute.post('/login', AuthController.login)
-AuthRoute.post('/register', AuthController.register)
+AuthRoute.post('/register', uploadAvatar, AuthController.register)
 
 
 export default AuthRoute
