@@ -24,8 +24,8 @@ const CommentController = () => {
 
   const getComments = async (req, res) => {
     try {
-      const {eventId} = req.query
-      const comments = await Comment.find({eventId: eventId})
+      const { eventId } = req.query
+      const comments = await Comment.find({ eventId: eventId })
       return sendResponse(res, 200, "Lấy bình luận của sự kiện thành công", comments);
     } catch (error) {
       console.log(error?.message);
@@ -35,8 +35,8 @@ const CommentController = () => {
 
   const reportComment = async (req, res) => {
     try {
-      const {id} = req.params
- const comment = await Comment.findById(id)
+      const { id } = req.params
+      const comment = await Comment.findById(id)
       comment.report += 1
       if (comment.report == 5) {
         comment.status = 'locked'
@@ -44,16 +44,13 @@ const CommentController = () => {
       }
       await comment.save()
       return sendResponse(res, 200, 'Bình luận này đã được báo cáo', comment)
-      
+
     } catch (error) {
       console.log(error?.message)
       return sendResponse(res, 500, error.message)
     }
   }
 
-
-
-     
   return {
     createComment,
     getComments,

@@ -30,9 +30,44 @@ const RegistrationController = () => {
     }
   };
 
+const getParticipants = async (req, res) => {
+  try {
+    const { eventId, search, accountId } = req.query;
+
+    let participants = await Registration.find({ eventId }).populate('accountId').populate('eventId')
+
+    // Lọc theo từ khóa tìm kiếm (fullname hoặc cardCode)
+    if (search) {
+      const searchLower = search.toLowerCase();
+      participants = participants.filter(item => {
+        const account = item.accountId;
+        if (!account) return false;
+        return (
+          account.fullname?.toLowerCase().includes(searchLower) ||
+          account.cardCode?.toLowerCase().includes(searchLower)
+        );
+      });
+    }
+
+    // Lọc theo accountId (nếu có)
+    if (accountId) {
+      participants = participants.filter(item => {
+        return item.accountId && item.accountId._id.toString() === accountId;
+      });
+    }
+
+    return sendResponse(res, 200, 'Lấy danh sách người tham gia thành công', participants);
+  } catch (error) {
+    console.log(error?.message);
+    return sendResponse(res, 500, error.message);
+  }
+};
+
+
   return {
     createRegistration,
     checkIn,
+    getParticipants
   };
 };
 

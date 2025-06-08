@@ -19,6 +19,7 @@ const ChapterController = () => {
         return sendResponse(res, 400, 'Chi đoàn đã tồn tại')
       }
       const chapter = new Chapter(form)
+      chapter.status = 'actived'
       await chapter.save()
       return sendResponse(res, 201, 'Tạo chi đoàn thành công')
     } catch (error) {

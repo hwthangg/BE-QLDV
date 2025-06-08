@@ -45,7 +45,9 @@ const AccountController = () => {
         limit = 5,
         search,
         status,
-        role
+        role,
+        chapterId,
+        position
       } = req.query;
 
       const filter = {};
@@ -55,6 +57,7 @@ const AccountController = () => {
           { email: { $regex: search, $options: "i" } },
           { phone: { $regex: search, $options: "i" } },
           { fullname: { $regex: search, $options: "i" } },
+          { cardCode: { $regex: search, $options: "i" } },
         ];
       }
       // Lọc theo status nếu có
@@ -65,6 +68,15 @@ const AccountController = () => {
       if (role) {
         filter.role = role;
       }
+
+      if(chapterId){
+        filter.chapterId = chapterId
+      }
+
+      if(position){
+        filter.position = position
+      }
+
       const options = {
         page: parseInt(page),
         limit: parseInt(limit),
@@ -140,7 +152,6 @@ const AccountController = () => {
       return sendResponse(res, 500, error.message)
     }
   }
-
 
   return { createAccount, getAccountsInPage, getAccountById, updateAccountById }
 }
