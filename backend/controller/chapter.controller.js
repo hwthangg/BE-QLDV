@@ -144,7 +144,9 @@ const ChapterController = () => {
     }
   }
 
-  return { createChapter, getChaptersInPage, getChapterById, updateChapterById }
+  
+
+  return { createChapter, getChaptersInPage, getChapterById, updateChapterById, }
 }
 
 export default ChapterController()

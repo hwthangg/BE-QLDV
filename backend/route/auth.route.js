@@ -9,6 +9,7 @@ AuthRoute.get('/', AuthController.getProfile)
 AuthRoute.put('/', uploadAvatar, AuthController.updateProfile)
 AuthRoute.post('/login', AuthController.login)
 AuthRoute.post('/register', uploadAvatar, AuthController.register)
+AuthRoute.get('/chapters', AuthController.getChaptersForRegister)
 
 
 export default AuthRoute

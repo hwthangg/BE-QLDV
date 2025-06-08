@@ -5,6 +5,7 @@ const ChapterRoute = express.Router()
 
 ChapterRoute.post('/', ChapterController.createChapter)
 ChapterRoute.get('/', ChapterController.getChaptersInPage)
+
 ChapterRoute.get('/:id', ChapterController.getChapterById)
 ChapterRoute.put('/:id', ChapterController.updateChapterById)
 

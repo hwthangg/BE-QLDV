@@ -51,7 +51,8 @@ app.get('/', (req, res) => {
 app.use('/api', (req, res, next) => {
   const openPaths = [
     '/auth/login',
-    '/auth/register'
+    '/auth/register',
+    '/auth/chapters'
   ];
 
   if (openPaths.includes(req.path)) {

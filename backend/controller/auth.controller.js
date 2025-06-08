@@ -1,4 +1,5 @@
 import Account from "../model/account.model.js"
+import Chapter from "../model/chapter.model.js"
 import { deleteFromCloudinary } from "../utils/crud/index.js"
 import { comparePassword, hashPassword } from "../utils/hash/index.js"
 import { signToken } from "../utils/jwt.js"
@@ -123,7 +124,17 @@ const AuthController = () => {
     }
   }
 
-  return { login, register, getProfile, updateProfile }
+  const getChaptersForRegister = async(req,res)=>{
+    try {
+      const chapters = await Chapter.find().select('name')
+       return sendResponse(res, 200, 'Lấy danh sách chi đoàn để đăng ký thành công', chapters)
+    } catch (error) {
+       console.log(error?.message)
+      return sendResponse(res, 500, error.message)
+    }
+  }
+
+  return { login, register, getProfile, updateProfile, getChaptersForRegister  }
 }
 
 export default AuthController()
