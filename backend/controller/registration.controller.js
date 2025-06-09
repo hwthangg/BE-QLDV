@@ -63,11 +63,23 @@ const getParticipants = async (req, res) => {
   }
 };
 
+ const getMyRegistrations = async(req,res)=>{
+  try {
+    const userId = req.userId
+    const registrations = await Registration.find({accountId: userId})
+
+     return sendResponse(res, 200, 'Lấy danh sách sự kiện của bạn thành công', registrations);
+  } catch (error) {
+     console.log(error?.message);
+    return sendResponse(res, 500, error.message);
+  }
+ }
 
   return {
     createRegistration,
     checkIn,
-    getParticipants
+    getParticipants,
+    getMyRegistrations,
   };
 };
 
