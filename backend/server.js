@@ -33,9 +33,11 @@ const server = http.createServer(app);  // Tạo server HTTP
 const io = new Server(server, {
   path: '/qldv/socket.io',
   cors: {
+    origin: '*', // hoặc domain client của bạn
     methods: ['GET', 'POST'],
   }
 });
+
 
 
 // Xử lý các middlewares
