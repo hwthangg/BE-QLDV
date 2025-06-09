@@ -126,7 +126,7 @@ const EventController = () => {
       }
 
       if (form?.startedAt) {
-        const duplication = await Event.findOne({ name: name, chapterId: manager.chapterId.toString(), startedAt: new Date(form.startedAt) })
+        const duplication = await Event.findOne({ name: event.name, chapterId: manager.chapterId.toString(), startedAt: new Date(form.startedAt) })
         console.log(duplication)
         if (duplication) {
           return sendResponse(res, 400, 'Sự kiện đã tồn tại')
