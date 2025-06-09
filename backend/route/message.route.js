@@ -6,8 +6,9 @@ const MessageRoute = express.Router();
 
 // Gửi tin nhắn mới
 MessageRoute.post('/', MessageController.createMessage);
-
+MessageRoute.get('/contacts', MessageController.getContactList);
 // Lấy tin nhắn giữa người dùng hiện tại và người khác
 MessageRoute.get('/:otherUserId', MessageController.getMessages);
+
 
 export default MessageRoute;
