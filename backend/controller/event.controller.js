@@ -100,7 +100,8 @@ const EventController = () => {
       const { id } = req.params
       const form = req.body
       const images = req.uploadedFiles
-
+      const userId = req.userId
+      const manager = await Account.findById(userId)
       const event = await Event.findById(id)
 
       const validation = validateEventForm(form, true)
