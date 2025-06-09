@@ -66,7 +66,7 @@ const getParticipants = async (req, res) => {
  const getMyRegistrations = async(req,res)=>{
   try {
     const userId = req.userId
-    const registrations = await Registration.find({accountId: userId})
+    const registrations = await Registration.find({accountId: userId}).populate('eventId')
 
      return sendResponse(res, 200, 'Lấy danh sách sự kiện của bạn thành công', registrations);
   } catch (error) {
