@@ -55,7 +55,7 @@ const AuthController = () => {
 
       if(form.role == 'manager'){
         const duplication = await Account.findOne({chapterId:form.chapterId})
-          if (duplication.isDuplicated) {
+          if (duplication) {
         return sendResponse(res, 400, 'Chi đoàn này đã có người quản lý')
       }}
 
