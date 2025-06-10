@@ -19,6 +19,7 @@ import { handleSocketConnection } from './utils/socket/index.js';
 import MessageRoute from './route/message.route.js';
 import Registration from './model/registration.model.js';
 import Notification from './model/notification.model.js';
+import NotificationRoute from './route/notification.route.js';
 
 // Xử lý initialization
 connectMongoDB()
@@ -54,7 +55,8 @@ app.use('/api', (req, res, next) => {
   const openPaths = [
     '/auth/login',
     '/auth/register',
-    '/auth/chapters'
+    '/auth/chapters',
+    '/notifications'
   ];
 
   if (openPaths.includes(req.path)) {
@@ -72,6 +74,7 @@ app.use('/api/comments', CommentRoute)
 app.use('/api/favorites', FavoriteRoute)
 app.use('/api/registrations', RegistrationRoute)
 app.use('/api/messages', MessageRoute)
+app.use('/api/notifications', NotificationRoute)
 
 handleSocketConnection(io)
 
