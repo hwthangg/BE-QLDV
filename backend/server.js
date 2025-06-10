@@ -56,7 +56,6 @@ app.use('/api', (req, res, next) => {
     '/auth/login',
     '/auth/register',
     '/auth/chapters',
-    '/notifications'
   ];
 
   if (openPaths.includes(req.path)) {

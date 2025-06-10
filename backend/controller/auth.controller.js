@@ -53,6 +53,12 @@ const AuthController = () => {
         return sendResponse(res, 400, duplication.message)
       }
 
+      if(form.role == 'manager'){
+        const duplication = await Account.findOne({chapterId:form.chapterId})
+          if (duplication.isDuplicated) {
+        return sendResponse(res, 400, 'Chi đoàn này đã có người quản lý')
+      }}
+
       const password = await hashPassword(form.password)
 
       const account = new Account({ ...form, password: password, avatar: avatar || null, status: 'pending' })
